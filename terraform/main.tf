@@ -1,5 +1,5 @@
 locals {
-  prefix = "sara-dev"  #Change
+  prefix = "jyoti-dev"  #Change
 }
 
 data "aws_caller_identity" "current" {}
@@ -37,12 +37,13 @@ module "ecs" {
   }
 
   services = {
-    sara-ecs-cicd = { #task def and service name -> #Change
+    jyoti-ecs-cicd = { #task def and service name -> #Change
+
       cpu    = 512
       memory = 1024
       # Container definition(s)
       container_definitions = {
-        sara-ecs-container = { #container name -> Change
+        jyoti-ecs-container = { #container name -> Change
           essential = true
           image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/${local.prefix}-ecr:latest"
           port_mappings = [
